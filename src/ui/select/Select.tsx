@@ -43,7 +43,8 @@ export const Select = (props: SelectProps) => {
 		setIsOpen(false);
 		onChange?.(option);
 	};
-	const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = () => {
+	const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = (event) => {
+		event.stopPropagation();
 		setIsOpen((isOpen) => !isOpen);
 	};
 
@@ -60,7 +61,8 @@ export const Select = (props: SelectProps) => {
 				className={styles.selectWrapper}
 				ref={rootRef}
 				data-is-active={isOpen}
-				data-testid='selectWrapper'>
+				data-testid='selectWrapper'
+				onClick={(e) => e.stopPropagation()}>
 				<img src={arrowDown} alt='иконка стрелочки' className={styles.arrow} />
 				<div
 					className={clsx(
